@@ -14,6 +14,7 @@ use customiesdevs\customies\util\NBT;
 use InvalidArgumentException;
 use pocketmine\block\Block;
 use pocketmine\block\RuntimeBlockStateRegistry;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\data\bedrock\block\BlockStateData;
 use pocketmine\data\bedrock\block\convert\BlockStateReader;
 use pocketmine\data\bedrock\block\convert\BlockStateWriter;
@@ -66,8 +67,7 @@ final class CustomiesBlockFactory {
 	 */
 	public function get(string $identifier): Block {
 		return clone (
-			$this->customBlocks[$identifier] ??
-			throw new InvalidArgumentException("Custom block $identifier is not registered")
+			$this->customBlocks[$identifier] ?? VanillaBlocks::GRASS()
 		);
 	}
 

@@ -12,6 +12,7 @@ use pocketmine\item\Item;
 use pocketmine\item\ItemIdentifier;
 use pocketmine\item\ItemTypeIds;
 use pocketmine\item\StringToItemParser;
+use pocketmine\item\VanillaItems;
 use pocketmine\network\mcpe\convert\TypeConverter;
 use pocketmine\network\mcpe\protocol\serializer\ItemTypeDictionary;
 use pocketmine\network\mcpe\protocol\types\CacheableNbt;
@@ -42,7 +43,7 @@ final class CustomiesItemFactory {
 	public function get(string $identifier, int $amount = 1): Item {
 		$item = StringToItemParser::getInstance()->parse($identifier);
 		if($item === null) {
-			throw new InvalidArgumentException("Custom item " . $identifier . " is not registered");
+            return VanillaItems::PAPER();
 		}
 		return $item->setCount($amount);
 	}
